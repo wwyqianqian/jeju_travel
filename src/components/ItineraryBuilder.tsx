@@ -111,7 +111,9 @@ export default function ItineraryBuilder() {
             </div>
           )}
         </div>
-      )})}
+      );
+    })}
+      </div>
     </div>
   );
 }
