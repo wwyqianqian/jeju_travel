@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useItineraryStore } from '../store/useItineraryStore';
 import GlassCard from './GlassCard';
+import ImageWithFallback from './ImageWithFallback';
 import { Trash2, MapPin, Clock } from 'lucide-react';
 
 export default function ItineraryBuilder() {
@@ -37,8 +38,8 @@ export default function ItineraryBuilder() {
             <div className="space-y-3 relative">
               {items.map((item, index) => (
                 <div key={`${item.id}-${index}`} className="flex flex-col relative">
-                  <GlassCard className="p-4 flex gap-4 items-center relative z-10">
-                    <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-lg shadow-sm" />
+                  <GlassCard className="p-4 flex gap-4 items-center relative z-10 hover:bg-white/50 transition-colors">
+                    <ImageWithFallback src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-lg shadow-sm" />
                     <div className="flex-1">
                       <h4 className="font-semibold text-slate-800 flex items-center gap-1">
                         <MapPin size={14} className="text-teal-600" />

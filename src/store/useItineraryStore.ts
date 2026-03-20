@@ -16,6 +16,8 @@ export const useItineraryStore = create<ItineraryState>()(
         'Day 1': [],
         'Day 2': [],
         'Day 3': [],
+        'Day 4': [],
+        'Day 5': [],
       },
       availableAttractions: mockAttractions,
       addAttraction: (day, attraction) => set((state) => ({
