@@ -2,6 +2,12 @@
 
 A personalized travel planner for Jeju Island, designed with a high-fidelity Glassmorphism UI. This tool is crafted to provide a visually stunning and intuitive experience for planning a healing journey.
 
+
+<div align="center">
+  <img src="./images/screenshot.png" alt="Jeju Glass Sea UI" width="100%" style="max-width: 900px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin: 20px 0;">
+</div>
+
+
 ## Features
 
 - **Glassmorphism UI**: A beautiful, translucent interface with a "Glass Sea" theme that is both modern and calming.
