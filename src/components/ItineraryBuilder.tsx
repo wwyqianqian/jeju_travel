@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useItineraryStore } from '../store/useItineraryStore';
 import GlassCard from './GlassCard';
 import ImageWithFallback from './ImageWithFallback';
-import { Trash2, MapPin, Clock } from 'lucide-react';
+import { Trash2, MapPin, Clock, Copy } from 'lucide-react';
 import { useDrivingTime } from '../hooks/useDrivingTime';
 
 function TransitTime({ origin, dest }: { origin: any, dest: any }) {
@@ -40,16 +40,50 @@ export default function ItineraryBuilder() {
     return R * c;
   };
 
+  const copyItinerary = () => {
+    let text = "# 我的济州岛 5 天行程规划 🌊\n\n";
+    Object.entries(days || {}).forEach(([day, items]) => {
+      text += `## ${day}\n`;
+      if (!items || items.length === 0) {
+        text += "- 自由活动 / 暂未安排\n\n";
+        return;
+      }
+      items.forEach((item, index) => {
+        text += `${index + 1}. **${item.name}** (${item.koreanName})\n`;
+        text += `   - 预计游玩: ${item.duration} | 标签: ${item.category}\n`;
+      });
+      text += "\n";
+    });
+    
+    navigator.clipboard.writeText(text).then(() => {
+      alert("✅ 行程清单已成功复制到剪贴板！可以直接粘贴到备忘录或微信里。");
+    }).catch(() => {
+      alert("❌ 复制失败，请重试。");
+    });
+  };
+
   return (
-    <div className="flex flex-col h-full space-y-6 overflow-y-auto pr-4 pb-10">
-      {Object.entries(days || {}).map(([day, items]) => {
-        const safeItems = items || [];
-        return (
-        <div key={day} className="space-y-4">
-          <h2 className="text-2xl font-bold text-teal-900 border-b border-teal-200/50 pb-2">{day}</h2>
-          {safeItems.length === 0 ? (
-            <p className="text-sm text-slate-500 italic">No attractions added yet. Add from the library.</p>
-          ) : (
+    <div className="flex flex-col h-full overflow-hidden">
+      <div className="flex justify-between items-center mb-4 flex-shrink-0">
+        <h2 className="text-xl font-extrabold text-teal-900 tracking-tight">我的行程安排</h2>
+        <button 
+          onClick={copyItinerary}
+          className="flex items-center gap-1.5 bg-teal-600/90 hover:bg-teal-700 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm transition-all"
+        >
+          <Copy size={14} />
+          一键导出文本
+        </button>
+      </div>
+
+      <div className="flex flex-col flex-1 space-y-6 overflow-y-auto pr-4 pb-10">
+        {Object.entries(days || {}).map(([day, items]) => {
+          const safeItems = items || [];
+          return (
+          <div key={day} className="space-y-4">
+            <h3 className="text-lg font-bold text-teal-800 border-b border-teal-200/50 pb-2">{day}</h3>
+            {safeItems.length === 0 ? (
+              <p className="text-sm text-slate-400 italic bg-white/30 px-3 py-2 rounded-lg border border-white/40">暂未安排景点，请从左侧添加。</p>
+            ) : (
             <div className="space-y-3 relative">
               {safeItems.map((item, index) => (
                 <div key={`${item.id}-${index}`} className="flex flex-col relative">
