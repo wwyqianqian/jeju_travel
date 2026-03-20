@@ -4,6 +4,19 @@ import { useItineraryStore } from '../store/useItineraryStore';
 import GlassCard from './GlassCard';
 import ImageWithFallback from './ImageWithFallback';
 import { Trash2, MapPin, Clock } from 'lucide-react';
+import { useDrivingTime } from '../hooks/useDrivingTime';
+
+function TransitTime({ origin, dest }: { origin: any, dest: any }) {
+  const { time, loading } = useDrivingTime(origin.lat, origin.lng, dest.lat, dest.lng);
+  return (
+    <div className="flex items-center gap-2 pl-8 py-2 text-xs text-teal-600/80 font-medium relative">
+      <div className="w-0.5 h-full bg-teal-300/50 absolute left-4 top-0 -z-0"></div>
+      <span className="bg-teal-50/80 backdrop-blur-md px-2 py-1 rounded-md border border-teal-100 z-10 shadow-sm flex items-center gap-1">
+        {loading ? '🚗 计算中...' : `🚗 ${time} 驾车`}
+      </span>
+    </div>
+  );
+}
 
 export default function ItineraryBuilder() {
   const days = useItineraryStore((state) => state.days);
@@ -57,12 +70,7 @@ export default function ItineraryBuilder() {
                   </GlassCard>
                   
                   {index < safeItems.length - 1 && safeItems[index+1] && (
-                    <div className="flex items-center gap-2 pl-8 py-2 text-xs text-teal-600/80 font-medium relative">
-                      <div className="w-0.5 h-full bg-teal-300/50 absolute left-4 top-0 -z-0"></div>
-                      <span className="bg-teal-50/80 backdrop-blur-md px-2 py-1 rounded-md border border-teal-100 z-10 shadow-sm flex items-center gap-1">
-                        🚗 ~ {Math.round(calculateDistance(item.lat, item.lng, safeItems[index+1].lat, safeItems[index+1].lng) * 1.5)} min 驾车
-                      </span>
-                    </div>
+                    <TransitTime origin={item} dest={safeItems[index+1]} />
                   )}
                 </div>
               ))}
