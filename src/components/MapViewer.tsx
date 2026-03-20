@@ -39,7 +39,8 @@ export default function MapViewer() {
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
         />
         
-        {Object.entries(days).map(([day, items]) => {
+        {Object.entries(days || {}).map(([day, items]) => {
+          if (!items || items.length === 0) return null;
           const positions: [number, number][] = items.map(item => [item.lat, item.lng]);
           const color = dayColors[day as keyof typeof dayColors] || '#000';
           

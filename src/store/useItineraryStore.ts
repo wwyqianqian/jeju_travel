@@ -1,12 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { Attraction, mockAttractions } from '../data/mockAttractions';
+import { Attraction } from '../data/mockAttractions';
 
 type ItineraryState = {
   days: Record<string, Attraction[]>;
   addAttraction: (day: string, attraction: Attraction) => void;
   removeAttraction: (day: string, attractionId: string) => void;
-  availableAttractions: Attraction[];
 };
 
 export const useItineraryStore = create<ItineraryState>()(
@@ -19,22 +18,21 @@ export const useItineraryStore = create<ItineraryState>()(
         'Day 4': [],
         'Day 5': [],
       },
-      availableAttractions: mockAttractions,
       addAttraction: (day, attraction) => set((state) => ({
         days: {
           ...state.days,
-          [day]: [...state.days[day], attraction],
+          [day]: [...(state.days[day] || []), attraction],
         }
       })),
       removeAttraction: (day, attractionId) => set((state) => ({
         days: {
           ...state.days,
-          [day]: state.days[day].filter((a) => a.id !== attractionId),
+          [day]: (state.days[day] || []).filter((a) => a.id !== attractionId),
         }
       })),
     }),
     {
-      name: 'jeju-itinerary-storage',
+      name: 'jeju-itinerary-storage-v2', // Changed name to bust old cache
     }
   )
 );

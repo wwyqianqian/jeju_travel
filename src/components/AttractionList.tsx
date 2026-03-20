@@ -1,22 +1,22 @@
 "use client";
 import React, { useState, useMemo } from 'react';
 import { useItineraryStore } from '../store/useItineraryStore';
+import { mockAttractions } from '../data/mockAttractions';
 import GlassCard from './GlassCard';
 import { Plus } from 'lucide-react';
 import ImageWithFallback from './ImageWithFallback';
 
 export default function AttractionList() {
-  const attractions = useItineraryStore((state) => state.availableAttractions);
   const addAttraction = useItineraryStore((state) => state.addAttraction);
   const [selectedDay, setSelectedDay] = useState('Day 1');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['All', ...Array.from(new Set(attractions.map(a => a.category)))];
+  const categories = ['All', ...Array.from(new Set(mockAttractions.map(a => a.category)))];
 
   const filteredAttractions = useMemo(() => {
-    if (selectedCategory === 'All') return attractions;
-    return attractions.filter(a => a.category === selectedCategory);
-  }, [attractions, selectedCategory]);
+    if (selectedCategory === 'All') return mockAttractions;
+    return mockAttractions.filter(a => a.category === selectedCategory);
+  }, [selectedCategory]);
 
   return (
     <div className="flex flex-col h-full space-y-4">

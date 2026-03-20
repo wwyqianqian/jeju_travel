@@ -29,14 +29,16 @@ export default function ItineraryBuilder() {
 
   return (
     <div className="flex flex-col h-full space-y-6 overflow-y-auto pr-4 pb-10">
-      {Object.entries(days).map(([day, items]) => (
+      {Object.entries(days || {}).map(([day, items]) => {
+        const safeItems = items || [];
+        return (
         <div key={day} className="space-y-4">
           <h2 className="text-2xl font-bold text-teal-900 border-b border-teal-200/50 pb-2">{day}</h2>
-          {items.length === 0 ? (
+          {safeItems.length === 0 ? (
             <p className="text-sm text-slate-500 italic">No attractions added yet. Add from the library.</p>
           ) : (
             <div className="space-y-3 relative">
-              {items.map((item, index) => (
+              {safeItems.map((item, index) => (
                 <div key={`${item.id}-${index}`} className="flex flex-col relative">
                   <GlassCard className="p-4 flex gap-4 items-center relative z-10 hover:bg-white/50 transition-colors">
                     <ImageWithFallback src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-lg shadow-sm" />
@@ -54,11 +56,11 @@ export default function ItineraryBuilder() {
                     </button>
                   </GlassCard>
                   
-                  {index < items.length - 1 && (
+                  {index < safeItems.length - 1 && safeItems[index+1] && (
                     <div className="flex items-center gap-2 pl-8 py-2 text-xs text-teal-600/80 font-medium relative">
                       <div className="w-0.5 h-full bg-teal-300/50 absolute left-4 top-0 -z-0"></div>
                       <span className="bg-teal-50/80 backdrop-blur-md px-2 py-1 rounded-md border border-teal-100 z-10 shadow-sm flex items-center gap-1">
-                        🚗 ~ {Math.round(calculateDistance(item.lat, item.lng, items[index+1].lat, items[index+1].lng) * 1.5)} min 驾车
+                        🚗 ~ {Math.round(calculateDistance(item.lat, item.lng, safeItems[index+1].lat, safeItems[index+1].lng) * 1.5)} min 驾车
                       </span>
                     </div>
                   )}
@@ -67,7 +69,7 @@ export default function ItineraryBuilder() {
             </div>
           )}
         </div>
-      ))}
+      )})}
     </div>
   );
 }
