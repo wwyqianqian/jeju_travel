@@ -34,3 +34,42 @@
 .leaflet-popup-tip {
   background: rgba(255, 255, 255, 0.8) !important;
 }
+
+/* 自定义极简光晕地图坐标点 */
+.transparent-icon-container {
+  background: transparent;
+  border: none;
+}
+
+.custom-map-pin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.pin-halo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: pin-pulsate 2.5s ease-out infinite; /* 柔和的呼吸动画 */
+}
+
+.pin-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border: 2.5px solid; /* 边框颜色由 JS 动态写入 */
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+@keyframes pin-pulsate {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}

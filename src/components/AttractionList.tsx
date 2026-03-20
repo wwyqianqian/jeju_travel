@@ -69,7 +69,7 @@ export default function AttractionList() {
             </div>
             <button 
               onClick={() => addAttraction(selectedDay, attr)}
-              className="self-center bg-teal-500/80 hover:bg-teal-600 text-white p-2 rounded-full transition-colors backdrop-blur-sm shadow-sm"
+              className="self-center bg-emerald-700/80 hover:bg-emerald-800/90 backdrop-blur-sm text-white p-2 rounded-full transition-colors backdrop-blur-sm shadow-sm"
               title={`Add to ${selectedDay}`}
             >
               <Plus size={16} />

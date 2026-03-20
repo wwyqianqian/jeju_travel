@@ -11,10 +11,10 @@ export default function Home() {
       {/* Header */}
       <header className="flex-shrink-0 bg-white/40 backdrop-blur-xl border border-white/50 rounded-2xl p-4 flex justify-between items-center shadow-lg">
         <div>
-          <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight flex items-baseline gap-2">
-            제주여행 <span className="text-xl font-medium text-gray-600">Jeju Travel Planner</span>
+          <h1 className="text-3xl font-extrabold text-sky-950 tracking-tight flex items-baseline gap-2">
+            제주여행 <span className="text-xl font-medium text-slate-800">Jeju Travel Planner</span>
           </h1>
-          <p className="text-sm text-gray-500 mt-1">Design your healing journey in the Glass Sea.</p>
+          <p className="text-sm text-slate-800 mt-1">Design your healing journey in the Glass Sea.</p>
         </div>
       </header>
 

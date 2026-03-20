@@ -11,7 +11,7 @@ function TransitTime({ origin, dest }: { origin: any, dest: any }) {
   return (
     <div className="flex items-center gap-2 pl-8 py-2 text-xs text-teal-600/80 font-medium relative">
       <div className="w-0.5 h-full bg-teal-300/50 absolute left-4 top-0 -z-0"></div>
-      <span className="bg-teal-50/80 backdrop-blur-md px-2 py-1 rounded-md border border-teal-100 z-10 shadow-sm flex items-center gap-1">
+      <span className="bg-white/30 backdrop-blur-md px-2 py-1 rounded-md border border-white/40 z-10 shadow-sm flex items-center gap-1">
         {loading ? '🚗 计算中...' : `🚗 ${time} 驾车`}
       </span>
     </div>
@@ -45,9 +45,9 @@ export default function ItineraryBuilder() {
     });
     
     navigator.clipboard.writeText(text).then(() => {
-      alert("✅ 行程清单已成功复制到剪贴板！可以直接粘贴到备忘录或微信里。");
+      alert("行程清单已成功复制到剪贴板");
     }).catch(() => {
-      alert("❌ 复制失败，请重试。");
+      alert("复制失败，请重试！");
     });
   };
 
@@ -57,7 +57,7 @@ export default function ItineraryBuilder() {
         <h2 className="text-xl font-extrabold text-teal-900 tracking-tight">我的行程安排</h2>
         <button 
           onClick={copyItinerary}
-          className="flex items-center gap-1.5 bg-teal-600/90 hover:bg-teal-700 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm transition-all"
+          className="flex items-center gap-1.5 bg-emerald-700/80 hover:bg-emerald-800/90 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm transition-all"
         >
           <Copy size={14} />
           一键导出文本
@@ -69,11 +69,11 @@ export default function ItineraryBuilder() {
           const safeItems = items || [];
           return (
           <div key={day} className="space-y-4">
-            <h3 className="text-lg font-bold text-teal-800 border-b border-teal-200/50 pb-2">{day}</h3>
+            <h3 className="text-base font-semibold text-teal-700 border-b border-teal-200/50 pb-2 tracking-wide">{day}</h3>
             {safeItems.length === 0 ? (
               <p className="text-sm text-slate-400 italic bg-white/30 px-3 py-2 rounded-lg border border-white/40">暂未安排景点，请从左侧添加。</p>
             ) : (
-            <div className="space-y-3 relative">
+            <div className="space-y-5 relative">
               {safeItems.map((item, index) => (
                 <div key={`${item.id}-${index}`} className="flex flex-col relative">
                   <GlassCard className="p-4 flex gap-4 items-center relative z-10 hover:bg-white/50 transition-colors">
