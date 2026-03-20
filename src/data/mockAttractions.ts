@@ -15,10 +15,10 @@ const getImg = (id: string) => `https://images.unsplash.com/photo-${id}?auto=for
 export const mockAttractions: Attraction[] = [
   // 🛫 交通与购物 (Transport & Shopping)
   { id: 't1', name: '济州国际机场', koreanName: '제주국제공항', category: '🛫 交通与购物', duration: '1h', lat: 33.5104, lng: 126.4913, image: getImg('1436491865332-7a61a109cc05') },
-  { id: 't2', name: '新罗免税店', koreanName: '신라면세점 제주점', category: '🛫 交通与购物', duration: '2h', lat: 33.4851, lng: 126.4816, image: getImg('1519559339243-9dd5b07221ee') },
-  { id: 't3', name: '乐天免税店', koreanName: '롯데면세점 제주점', category: '🛫 交通与购物', duration: '2h', lat: 33.4850, lng: 126.4820, image: getImg('1580828343064-fde4cad2028f') },
-  { id: 't4', name: 'Olive Young 济州总店', koreanName: '올리브영 제주본점', category: '🛫 交通与购物', duration: '1h', lat: 33.4996, lng: 126.5312, image: getImg('1596462502278-27bf85033e5a') },
-  { id: 't5', name: 'Aesop 济州店', koreanName: '이솝 제주', category: '🛫 交通与购物', duration: '0.5h', lat: 33.5000, lng: 126.5300, image: getImg('1608248543803-ba4f8c70ae0b') },
+  { id: 't2', name: '新罗免税店', koreanName: '신라면세점 제주점', category: '🛫 交通与购物', duration: '2h', lat: 33.4851, lng: 126.4816, image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=500&q=80' },
+  { id: 't3', name: '乐天免税店', koreanName: '롯데면세점 제주점', category: '🛫 交通与购物', duration: '2h', lat: 33.4850, lng: 126.4820, image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=500&q=80' },
+  { id: 't4', name: 'Olive Young 济州总店', koreanName: '올리브영 제주본점', category: '🛫 交通与购物', duration: '1h', lat: 33.4996, lng: 126.5312, image: 'https://images.unsplash.com/photo-1596462502278-27bf85033e5a?auto=format&fit=crop&w=500&q=80' },
+  { id: 't5', name: 'Aesop 济州店', koreanName: '이솝 제주', category: '🛫 交通与购物', duration: '0.5h', lat: 33.5000, lng: 126.5300, image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=500&q=80' },
 
   // 🥩 美食与疗愈 (Food & Healing)
   { id: 'f1', name: '熟成到 烤黑猪肉', koreanName: '숙성도 노형본관', category: '🥩 美食与疗愈', duration: '2h', lat: 33.4831, lng: 126.4821, image: getImg('1544025162-831522851996') },
